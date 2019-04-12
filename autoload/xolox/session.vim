@@ -168,13 +168,17 @@ function! xolox#session#save_state(commands) " {{{2
   let tempfile = tempname()
   let ssop_save = &sessionoptions
   try
+    " 原代码中将:mksession的 &sessionoptions 选项去掉了 "options"，其理由是：
+    " 1.会让session文件变得很大；2. 会产生一些意外的bug. 但这里还是将这样的限
+    " 制先去掉，看看效果如何再作打算。
+    "
     " The default value of &sessionoptions includes "options" which causes
     " :mksession to include all Vim options and mappings in generated session
     " scripts. This can significantly increase the size of session scripts
     " which makes them slower to generate and evaluate. It can also be a bit
     " buggy, e.g. it breaks Ctrl-S when :runtime mswin.vim has been used. The
     " value of &sessionoptions is changed temporarily to avoid these issues.
-    set ssop-=options
+    " set ssop-=options
     execute 'mksession' fnameescape(tempfile)
     let lines = readfile(tempfile)
     " Remove the mode line added by :mksession because we'll add our own in

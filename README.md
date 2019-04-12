@@ -197,7 +197,9 @@ By default the plug-in will save the color scheme and the ['background' option] 
 
 ### The `g:session_persist_globals` option
 
-The vim-session plug-in uses Vim's [:mksession] [mksession] command but it changes ['sessionoptions'][sessionoptions] so that Vim options and mappings are not persisted. The plug-in does this because persistence of options and mappings can break loading of sessions, in other words it's fragile (in my opinion).
+> Note: 暂时去掉了下面的限制
+>
+> The vim-session plug-in uses Vim's [:mksession] [mksession] command but it changes ['sessionoptions'][sessionoptions] so that Vim options and mappings are not persisted. The plug-in does this because persistence of options and mappings can break loading of sessions, in other words it's fragile (in my opinion).
 
 If you want the plug-in to persist specific global variables or options you can add their names to the list `g:session_persist_globals` in your [vimrc script] [vimrc]:
 
